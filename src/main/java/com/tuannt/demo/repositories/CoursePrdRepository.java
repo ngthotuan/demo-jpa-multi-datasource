@@ -4,9 +4,11 @@ import com.tuannt.demo.configs.PrdRepositoryMarker;
 import com.tuannt.demo.entities.CourseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.UUID;
+
 /**
  * Created by tuannt7 on 23/09/2025
  */
 @PrdRepositoryMarker
-public interface CoursePrdRepository extends JpaRepository<CourseEntity, Long> {
+public interface CoursePrdRepository extends JpaRepository<CourseEntity, UUID> {
 }

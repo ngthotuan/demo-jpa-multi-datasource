@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 /**
  * Created by tuannt7 on 23/09/2025
  */
@@ -27,12 +29,12 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public GetCourseResDto getCourseById(@PathVariable Long id) {
+    public GetCourseResDto getCourseById(@PathVariable UUID id) {
         return courseService.getCourse(id);
     }
 
     @PostMapping("/{id}/release")
-    public void releaseCourse(@PathVariable Long id) {
+    public void releaseCourse(@PathVariable UUID id) {
         courseService.releaseCourse(id);
     }
 

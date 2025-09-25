@@ -40,7 +40,7 @@ public class ProductionDatabaseConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.prd.hikari")
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource prdDatasource() {
         return prdDatasourceProperties()
                 .initializeDataSourceBuilder()
@@ -57,8 +57,7 @@ public class ProductionDatabaseConfig {
     }
 
     @Bean
-    public PlatformTransactionManager prdTransactionManager(
-            @Qualifier("prdEntityManagerFactory") EntityManagerFactory emf) {
+    public PlatformTransactionManager prdTransactionManager(@Qualifier("prdEntityManagerFactory") EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
 }

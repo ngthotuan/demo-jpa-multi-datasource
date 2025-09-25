@@ -34,13 +34,13 @@ import javax.sql.DataSource;
 public class PrimaryDatabaseConfig {
     @Bean
     @Primary
-    @ConfigurationProperties("spring.datasource.primary")
     public DataSourceProperties dataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
     @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.prd.hikari")
     public DataSource dataSource() {
         return dataSourceProperties()
                 .initializeDataSourceBuilder()

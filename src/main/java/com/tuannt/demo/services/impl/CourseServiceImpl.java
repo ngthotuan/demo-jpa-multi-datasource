@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -45,7 +46,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public GetCourseResDto getCourse(Long courseId) {
+    public GetCourseResDto getCourse(UUID courseId) {
         log.info("Getting course {}", courseId);
         CourseEntity course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
@@ -66,22 +67,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional
-    public void releaseCourse(Long courseId) {
+    public void releaseCourse(UUID courseId) {
         CourseEntity course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
-
-        CourseEntity prdCourse =  new CourseEntity();
-        prdCourse.setName(course.getName());
-        Set<StudentEntity> students = course.getStudents().stream()
-                .map(s -> {
-                    StudentEntity student = new StudentEntity();
-                    student.setName(s.getName());
-                    student.setCourse(prdCourse);
-                    return student;
-                })
-                .collect(Collectors.toSet());
-        prdCourse.setStudents(students);
-
-        coursePrdRepository.save(prdCourse);
+        coursePrdRepository.save(course);
     }
 }

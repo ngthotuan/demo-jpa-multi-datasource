@@ -7,19 +7,17 @@ spring:
     show_sql: true
     hibernate:
       ddl-auto: create-drop
-      jdbc:
-        batch_size: 50
   datasource:
+    url: jdbc:mysql://localhost/demo
+    username: root
+    password: vng@123
     hikari:
       connection-timeout: 15000
       idle-timeout: 120000
       minimum-idle: 3
-      maximum-pool-size: 30
+      maximum-pool-size: 20
       max-lifetime: 1800000
-    primary:
-      url: jdbc:mysql://localhost/demo
-      username: root
-      password: vng@123
+      pool-name: stg
     prd:
       url: jdbc:mysql://localhost/demo_prd
       username: root
@@ -30,3 +28,4 @@ spring:
         minimum-idle: 3
         maximum-pool-size: 10
         max-lifetime: 1800000
+        pool-name: prd

@@ -3,6 +3,7 @@ package com.tuannt.demo.dtos;
 import lombok.Data;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by tuannt7 on 23/09/2025
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Data
 public class GetCourseResDto {
-    private long id;
+    private UUID id;
     private String name;
     private Set<StudentDto> students;
 }
